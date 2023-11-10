@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import VeereshImg from '../assets/Veeresh.png'
 import YonitaImg from '../assets/Yonita.png'
 import '../assets/style/core.css'
+import Footer from '../components/Footer';
 function Dashboard() {
     const [submitButton, setSubmitButton] = useState('SUBMIT');
     const [disableSubmitButton, setDisableSubmitButton] = useState(false);
@@ -124,6 +125,7 @@ function Dashboard() {
                 </div>
             </div>
             <ToastContainer />
+            <Footer />
         </>
     );
 }
