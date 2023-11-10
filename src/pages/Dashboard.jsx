@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
-
+import VeereshImg from '../assets/Veeresh.png'
+import YonitaImg from '../assets/Yonita.png'
+import '../assets/style/core.css'
 function Dashboard() {
     const [submitButton, setSubmitButton] = useState('SUBMIT');
     const [disableSubmitButton, setDisableSubmitButton] = useState(false);
@@ -13,8 +15,8 @@ function Dashboard() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const contestantData = [
-        { id: 221292, name: 'Veeresh ', image: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' },
-        { id: 221059, name: 'Yonita Furtado', image: 'https://w7.pngwing.com/pngs/4/736/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png' },
+        { id: 221296, name: 'Veeresh Kuratti', image: VeereshImg },
+        { id: 221059, name: 'Yonita Furtado', image: YonitaImg },
     ];
 
     const handleVote = async () => {
@@ -36,7 +38,8 @@ function Dashboard() {
             if (response.status === 200) {
                 toast.success('Vote submitted successfully!');
                 setSelectedCandidate('');
-                setRegNumber('');
+                setRegNumber(''); 
+
             } else {
                 toast.error('Sorry, something went wrong with the vote submission.');
             }
@@ -48,9 +51,9 @@ function Dashboard() {
 
     return (
         <>
-        <Navbar />
+            <Navbar />
             <div className="container mt-4">
-                 <div className="row">
+                <div className="row">
                     <div className="col-12">
                         <h2 className="text-center mb-4 text-decoration-underline">General Secretary E-Voting Portal</h2>
                         <div className="text-center mt-4">
@@ -62,7 +65,7 @@ function Dashboard() {
                                 onChange={(e) => setRegNumber(e.target.value)}
                                 pattern="\d{6}"
                                 title="Please enter a 6-digit registration number"
-                                maxLength="6"  
+                                maxLength="6"
                                 required
                             /><span className="badge bg-danger ms-3">Required</span>
                             {/* <button
@@ -85,13 +88,13 @@ function Dashboard() {
                             <tbody>
                                 {contestantData.map((contestant) => (
                                     <tr key={contestant.id}>
-                                        <td>{contestant.id}</td>
-                                        <td>{contestant.name}</td>
+                                        <td className='fs-5'>{contestant.id}</td>
+                                        <td className='fs-5'>{contestant.name}</td>
                                         <td>
                                             <img
                                                 src={contestant.image}
                                                 alt={`Image of ${contestant.name}`}
-                                                style={{ width: '90px' }}
+                                                style={{ width: '120px' }}
                                             />
                                         </td>
                                         <td>
@@ -110,7 +113,7 @@ function Dashboard() {
                         <div className="text-center mt-4">
                             <button
                                 type="button"
-                                className='btn btn-info text-white fw-bolder'
+                                className='btn btn-primary text-white fw-bolder'
                                 onClick={handleVote}
                                 disabled={!selectedCandidate || !regNumber}
                             >
